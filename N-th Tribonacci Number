@@ -1,0 +1,24 @@
+import java.io.*;
+import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        int num,first=0,second=1,third=1,n;
+        int[] result=new int[50];
+        Scanner s=new Scanner(System.in);
+        num=s.nextInt();
+        for(int i=3;i<=num;i++){
+            n=first+second+third;
+            result[i-3]=first;
+            result[i-2]=second;
+            result[i-1]=third;
+            result[i]=n;
+            first=second;
+            second=third;
+            third=n;
+        }
+        System.out.println(result[num]);
+    }
+}
