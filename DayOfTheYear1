@@ -1,0 +1,81 @@
+import java.io.*;
+import java.util.*;
+//Day of the Year 1
+public class Solution {
+    public static boolean checkLeapYear(int year){
+        boolean leap = false;
+        if(year % 4 == 0){
+            if( year % 100 == 0){
+                if ( year % 400 == 0)
+                    leap = true;
+                else
+                    leap = false;
+            }
+            else
+                leap = true;
+        }
+        else
+            leap = false;
+        
+        return leap;
+    }
+    public static int numberOfDay(int day, int month, int year){
+        int jan = 31, feb = 28, mar = 31, apr = 30, 
+        may = 31, jun = 30, jul = 31, aug = 31, sep = 30, 
+        oct = 31, nov = 30, dec = 31;
+        
+        if(checkLeapYear(year))
+            feb = 29;
+        else 
+            feb = 28;
+        
+        switch(month){
+            case 2:
+                day = day + jan;
+                break;
+            case 3:
+                day = day + jan + feb;
+                break;
+            case 4:
+                day = day + jan + feb + mar;
+                break;                    
+            case 5:
+                day = day + jan + feb + apr;
+                break;                    
+            case 6:
+                day = day + jan + feb + apr + may;
+                break;                    
+            case 7:
+                day = day + jan + feb + apr + may + jun;
+                break;                    
+            case 8:
+                day = day + jan + feb + apr + may + jun + jul;
+                break;                    
+            case 9:
+                day = day + jan + feb + apr + may + jun + jul + aug;
+                break;                    
+            case 10:
+                day = day + jan + feb + apr + may + jun + jul + aug + sep;
+                break;                    
+            case 11:
+                day = day + jan + feb + apr + may + jun + jul + aug + sep + oct;
+                break;                    
+            case 12:
+                day = day + jan + feb + apr + may + jun + jul + aug + sep + oct + nov;
+                break;                    
+        }
+        return day;
+    }
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc = new Scanner(System.in);
+        String date_unsplit1 = sc.nextLine();
+        String date_unsplit2 = date_unsplit1.substring(7);
+        String [] date_split = date_unsplit2.split("-");
+        int day = Integer.parseInt(date_split[2]);
+        int month = Integer.parseInt(date_split[1]);
+        int year = Integer.parseInt(date_split[0]);
+        if(day>=1 && day <=31 && month>=1 && month <=12)
+            System.out.println(numberOfDay(day,month,year));
+    }
+}
